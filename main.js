@@ -3,6 +3,8 @@ var bodyParser = require('body-parser');
 var connexion= require('./JS/connexion.js');
 const exec = require('child_process').exec;
 var fs = require('fs');
+var request= require('request');
+var path = require('path');
 
 
 var app = express();
@@ -21,10 +23,12 @@ app.get('/', function (req, res) {
 
 app.post("/", function (req, res) {
     var connection="Connection DOWN!";
+    var details= "No connection etablished.";
     if (fs.existsSync(req.body.path+'\\mongod.exe')) {
         exec("start "+ req.body.path +'\\mongod.exe');
-        if(req.body.recreate =="on"){
-            exec("mongoimport --db Application_database --collection reuters --drop --file reuters.json",{cwd: req.body.path})
+        var pathJson = path.dirname(fs.realpathSync(__filename))+ '\\reuters.json';
+        if(!fs.existsSync(pathJson) || req.body.recreate =="on"){
+            downloadAddJson(req,pathJson);
         }
         connection="Connection UP!";
     }
@@ -71,6 +75,19 @@ app.post("/search", function (req, res) {
     })
 });
 
+
+
+function downloadAddJson(req,pathJson){
+    var options = {
+        url:"http://raw.githubusercontent.com/absabry/mongodb/master/reuters.json" ,
+    };
+    request(options, function(err, response, body) {
+        if(!err) {
+            fs.writeFile('reuters.json', response.body)
+        }
+    });
+    exec("mongoimport --db Application_database --collection reuters --drop --file " + pathJson,{cwd: req.body.path});
+}
 
 
 app.listen(8888);
