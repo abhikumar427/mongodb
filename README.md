@@ -45,5 +45,8 @@ Your query form
 ![alt tag](https://github.com/absabry/mongodb/blob/master/images/pres-result.JPG)
 The result you have for this query : 
 ![alt tag](https://github.com/absabry/mongodb/blob/master/images/results.JPG)
+If you want to get the complete json object, you can get it by clicking on the “GET JSON” 
+button.
+![alt tag](https://github.com/absabry/mongodb/blob/master/images/json.JPG)
 And finally if there are no results, you will have something like : 
 ![alt tag](https://github.com/absabry/mongodb/blob/master/images/noresult.JPG)
