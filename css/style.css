@@ -6,14 +6,29 @@ body{
   text-align: center;
 }
 
+th{
+    color: black;
+    text-align: center;
+    border-bottom:2pt solid black;
+}
+table{
+    border-collapse:collapse;
+}
+tr{
+    border-bottom:1pt solid silver;
+}
+.body{
+    text-align: justify;
+    text-justify: inter-word;
+}
 td{
     color: black;
-    font-size: 20px;
-    line-height: 1.2em;
-    text-align:left ;
+    font-size: 14px;
+    text-align:center;
 }
 p{
-color: black;   font-size: 14px;
+color: black;
+font-size: 14px;
 }
 
 form {

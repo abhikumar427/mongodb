@@ -8,11 +8,19 @@
 </head>
 <body>
     <h2 class="title">Detailed results</h2>
+    <form action="/json" method="post">
+        <button type="submit" id="submit" class="button">GET JSON</button>
+    </form>
     <% if(result.length != 0){ %>
     <table>
+        <th> Date </th>
+        <th> Title </th>
+        <th> Body </th>
         <% for(var i=0; i < result.length; i++) { %>
             <tr>
-                <td><%= JSON.stringify(result[i], null, "\t")%></td>
+                <td><%= result[i].date%></td>
+                <td><%= result[i].text.title%></td>
+                <td class="body"><%= result[i].text.body%></td>
             </tr>
         <% } %>
     </table>

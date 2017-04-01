@@ -5,6 +5,7 @@ const exec = require('child_process').exec;
 var fs = require('fs');
 var request= require('request');
 var path = require('path');
+var result;
 
 
 var app = express();
@@ -16,7 +17,9 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(bodyParser.json());
 
-
+app.post('/json',function (req,res){
+    res.write(JSON.stringify(result,null,4));
+})
 app.get('/', function (req, res) {
     res.render(__dirname + '\\view\\index',{connection:"Connection DOWN!"});
 });
@@ -36,15 +39,17 @@ app.post("/", function (req, res) {
 });
 
 app.post("/auto", function (req, res) {
-    var result=JSON.parse(req.body.query)
+    result=JSON.parse(req.body.query)
     if(result.agg==1){
         connexion.aggregate(result,function(err,data){
-            res.render(__dirname + '\\view\\result',{result:data});
+            result=data;
+            res.render(__dirname + '\\view\\result',{result:result});
         })
     }
     else{
         connexion.find(JSON.stringify(result),function(err,data){
-            res.render(__dirname + '\\view\\result',{result:data});
+            result=data;
+            res.render(__dirname + '\\view\\result',{result:result});
         })
     }
 });
@@ -71,7 +76,8 @@ app.post("/search", function (req, res) {
         request.query["topics"]= {"$regex" : req.body.topics, "$options" : "i"};
     }
     connexion.find(JSON.stringify(request),function(err,data){
-        res.render(__dirname + '\\view\\result',{result:data});
+        result=data;
+        res.render(__dirname + '\\view\\result',{result:result});
     })
 });
 
