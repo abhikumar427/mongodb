@@ -28,6 +28,9 @@ app.get('/', function (req, res) {
 app.post("/", function (req, res) {
     var connection="Connection DOWN!";
     var details= "No connection etablished.";
+    if(!fs.existsSync("C:\\data") || !fs.existsSync("C:\\data\\db")){
+        exec("mkdir C:\\data\\db");
+    }
     if (fs.existsSync(req.body.path+'\\mongod.exe')) {
         var command="start "+ "\"\"  " + '\"'+req.body.path +'\\mongod.exe\"';
         exec(command);
