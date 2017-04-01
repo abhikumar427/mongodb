@@ -20,6 +20,7 @@ app.use(bodyParser.json());
 app.post('/json',function (req,res){
     res.write(JSON.stringify(result,null,4));
 })
+
 app.get('/', function (req, res) {
     res.render(__dirname + '\\view\\index',{connection:"Connection DOWN!"});
 });
@@ -29,10 +30,9 @@ app.post("/", function (req, res) {
     var details= "No connection etablished.";
     if (fs.existsSync(req.body.path+'\\mongod.exe')) {
         var command="start "+ "\"\"  " + '\"'+req.body.path +'\\mongod.exe\"';
-        console.log(command);
         exec(command);
         var pathJson = path.dirname(fs.realpathSync(__filename))+ '\\reuters.json';
-        if(!fs.existsSync(pathJson) || req.body.recreate =="on"){
+        if(req.body.recreate =="on"){
             downloadAddJson(req,pathJson);
         }
         connection="Connection UP!";
@@ -97,7 +97,8 @@ function downloadAddJson(req,pathJson){
             fs.writeFile('reuters.json', response.body)
         }
     });
-    exec("mongoimport --db Application_database --collection reuters --drop --file " + pathJson,{cwd: req.body.path});
+    var command= '\"'+req.body.path +'\\mongoimport.exe\" --db test --collection reuters --drop --file '+ '\"'+pathJson+'\"';
+    exec(command);
 }
 
 
