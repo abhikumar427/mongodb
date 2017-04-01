@@ -13,14 +13,26 @@
     </form>
     <% if(result.length != 0){ %>
     <table>
+        <% if(agg==0){ %>
         <th> Date </th>
         <th> Title </th>
         <th> Body </th>
+        <% }else{ %>
+            <th> Places </th>
+            <th> Date </th>
+            <th> Count </th>
+        <% } %>
         <% for(var i=0; i < result.length; i++) { %>
             <tr>
+                <% if(agg==0){ %>
                 <td><%= result[i].date%></td>
                 <td><%= result[i].text.title%></td>
                 <td class="body"><%= result[i].text.body%></td>
+                <% }else{ %>
+                    <td><%= result[i]._id.places%></td>
+                    <td><%= result[i]._id.date%></td>
+                    <td><%= result[i].count%></td>
+                <% } %>
             </tr>
         <% } %>
     </table>

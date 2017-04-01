@@ -85,7 +85,7 @@
                             "agg":1,
                             "match":{"$match" : {"topics" : "cocoa"}},
                             "project":{},
-                            "group":{"$group" : {"_id" : {"places" : "$places", "date" : "$date"}, "total" : {"$sum" : 1}}},
+                            "group":{"$group" : {"_id" : {"places" : "$places", "date" : "$date"}, "count" : {"$sum" : 1}}},
                             "sort":{ "$sort" : {"date":1} }
                         }'>Les articles dont les topics contiennent le mot'cocoa' triée par date et lieux</OPTION>
                         <OPTION value='{

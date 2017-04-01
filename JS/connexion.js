@@ -33,7 +33,6 @@ module.exports = {
             if(Object.keys(request.sort).length !== 0){
                     query.push(request.sort);
             }
-            console.log(JSON.stringify(query));
             collection.aggregate(query, function(err, docs) {
                 console.log(docs)
                 callback(null,docs);

@@ -13,6 +13,7 @@ th{
 }
 table{
     border-collapse:collapse;
+    width: 100%;
 }
 tr{
     border-bottom:1pt solid silver;

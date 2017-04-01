@@ -51,13 +51,13 @@ app.post("/auto", function (req, res) {
     if(result.agg==1){
         connexion.aggregate(result,function(err,data){
             result=data;
-            res.render(__dirname + '\\view\\result',{result:result});
+            res.render(__dirname + '\\view\\result',{agg:1,result:result});
         })
     }
     else{
         connexion.find(JSON.stringify(result),function(err,data){
             result=data;
-            res.render(__dirname + '\\view\\result',{result:result});
+            res.render(__dirname + '\\view\\result',{agg:0,result:result});
         })
     }
 });
@@ -85,7 +85,7 @@ app.post("/search", function (req, res) {
     }
     connexion.find(JSON.stringify(request),function(err,data){
         result=data;
-        res.render(__dirname + '\\view\\result',{result:result});
+        res.render(__dirname + '\\view\\result',{agg:0,result:result});
     })
 });
 
