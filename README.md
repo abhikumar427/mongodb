@@ -17,6 +17,7 @@ To use this application you should install mongodb server. You can download it f
 
 ## Steps to use it
 Launch the main file, main.js > _node main.js_
+#### By the way, you have to ask for the creation of the database! if you don’t check the box at least one time, the database will be empty and there won’t be any results!) ####
 #### First step
 Enter your repo where you downloaded the mongodb server, more precisely the "bin" folder
 ![alt tag](https://github.com/absabry/mongodb/blob/master/images/connexion.JPG)
