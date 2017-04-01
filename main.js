@@ -28,12 +28,17 @@ app.post("/", function (req, res) {
     var connection="Connection DOWN!";
     var details= "No connection etablished.";
     if (fs.existsSync(req.body.path+'\\mongod.exe')) {
-        exec("start "+ req.body.path +'\\mongod.exe');
+        var command="start "+ "\"\"  " + '\"'+req.body.path +'\\mongod.exe\"';
+        console.log(command);
+        exec(command);
         var pathJson = path.dirname(fs.realpathSync(__filename))+ '\\reuters.json';
         if(!fs.existsSync(pathJson) || req.body.recreate =="on"){
             downloadAddJson(req,pathJson);
         }
         connection="Connection UP!";
+    }
+    else{
+        connection="Connection DOWN! The file dosent exists!";
     }
     res.render(__dirname + '\\view\\index',{connection:connection});
 });
