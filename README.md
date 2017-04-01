@@ -16,7 +16,7 @@ You can use this line to add all packages you need :+1: :
 To use this application you should install mongodb server. You can download it from http://www.mongodb.org/downloads and you should install node js also https://nodejs.org/en/download/. Think to define it in environment variable for easiest manipulation!
 
 ## Steps to use it
-
+Launch the main file, main.js > _node main.js_
 #### First step
 Enter your repo where you downloaded the mongodb server, more precisely the "bin" folder
 ![alt tag](https://github.com/absabry/mongodb/blob/master/images/connexion.JPG)
